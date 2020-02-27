@@ -1,0 +1,95 @@
+<!-- Preloader -->
+<!-- <div class="outslider_loading">
+ <div class="la-ball-scale-ripple-multiple la-dark la-2x">
+     <div></div>
+     <div></div>
+     <div></div>
+ </div>    
+</div> -->
+      
+
+<div class="top_btn"> 
+ <a class="scrollToTop" href="javascript:void(0)"> <i class="fa fa-angle-up" aria-hidden="true"></i></a> 
+</div>
+      
+<header>
+  <div class="navbar_wrap">
+   <!-- nav-bar-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="nav_bg">
+      <div class="container"> 
+          <a class="navbar-brand" [routerLink]="['/',user_slug]" >
+            <img src="assets/brewery/images/logo.jpg">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navbar_right m-auto align-items-center">
+              
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/',user_slug]" >HOME </a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['active']" *ngIf="websitetype==2">
+                <a class="nav-link" [routerLink]="['/',user_slug,'about-us']" >ABout US</a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['active']" *ngIf="websitetype==2">
+                <a class="nav-link" [routerLink]="['/',user_slug,'our-story']" >our story</a>
+              </li>
+              <li class="nav-item">
+                <a [routerLink]="['/',user_slug]" >
+                  <img src="assets/brewery/images/logo.jpg">
+                </a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['active']" >
+                <a class="nav-link" [routerLink]="['/',user_slug,'blog']" >blog </a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['active']" *ngIf="websitetype==2">
+                <a class="nav-link" [routerLink]="['/',user_slug,'shop']" >shop</a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/',user_slug,'contact-us']" >contact</a>
+              </li>    
+
+            </ul>
+            <ul class="nav navbar-nav">
+              <li>
+                  <a [href]="sanitizer.bypassSecurityTrustResourceUrl(contactDetails.facebook_link)" class="nav-link">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                  </a>
+              </li>
+               
+              <li>
+                  <a [href]="sanitizer.bypassSecurityTrustResourceUrl(contactDetails.twitter_link)" class="nav-link">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                  </a>
+              </li>
+                  
+              <li>
+                  <a [href]="sanitizer.bypassSecurityTrustResourceUrl(contactDetails.instagram_link)" class="nav-link">
+                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                  </a>
+              </li>
+               
+              <li>
+                  <a [href]="sanitizer.bypassSecurityTrustResourceUrl(contactDetails.pinterest_link)" class="nav-link">
+                    <i class="fa fa-pinterest" aria-hidden="true"></i>
+                  </a>
+              </li>
+              
+              <li>
+                  <a class="nav-link"  [routerLink]="['/',user_slug,'cart-details']" >
+                      <i class="fa fa-cart-plus" aria-hidden="true" style="color:red"></i>{{cartcount}}
+                  </a>
+              </li>
+              <li *ngIf="show" >hi {{profileName}}</li>
+              <li *ngIf="show" >
+                  <a class="nav-link" (click)="logout()"  data-toggle="tooltip" title="Click to logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  </a>
+              </li>
+               
+            </ul>
+              
+          </div>                                                                           
+        </div>
+    </nav>
+  </div>
+</header>

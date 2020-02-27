@@ -1,0 +1,99 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="contact-banner" *ngIf="bannerData.length !== 0">
+  <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+  <div class="banner-text">
+    <div class="container">
+      <h5 class="pt-lg-5">{{bannerData.banner_type |titlecase}}</h5>
+      <div [innerHtml]="bannerData.banner_content"></div>
+    </div>
+  </div>
+</section>
+
+<!--Under banner section-->
+<section class="our-secret our-team our-story pt-5">
+
+  <div class="container">
+    <div class="member-repet" *ngFor="let underBanner of underBannerData let j=index;">
+
+      <div class="member_box">
+        <div class="pr-lg-3 pt-3">
+          <figure><img src="http://api.fftb.co.uk/image/ourstory2/{{underBanner.id}}" class="img-fluid" /></figure>
+          <div class="pr-lg-3">
+            <h3>{{underBanner.story_title}}</h3>
+            <div class="pt-lg-3 pb-lg-3" [innerHtml]="underBanner.story_content"></div>
+            <a [routerLink]="['/',user_slug,'ourstory-details',underBanner.slug]">VIEW MORE</a>
+          </div>
+        </div>
+      </div>
+      <div class="member_box pl-lg-0 pr-lg-0 text-center align-self-center">
+        <figure class="m-0"><img src="http://api.fftb.co.uk/image/ourstory/{{underBanner.id}}" class="img-fluid" />
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="clearfix"></div>
+<!--our-process-->
+<section class="our-process">
+  <div class="container">
+    <h2 class="text-center">OUR PROCESS</h2>
+
+    <div class="row justify-content-center" *ngFor="let process of processData let p=index;">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-12 pr-lg-5 align-self-center" *ngIf="p%2 =='0'; else elseContent ">
+        <h3>{{process.process_name}}</h3>
+        <div [innerHtml]="process.process_short_des"></div>
+        <a [routerLink]="['/',user_slug,'process-details',process.slug]">VIEW MORE</a>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-5 col-12 pl-lg-0" *ngIf="p%2 =='0'; else elseImage ">
+        <figure>
+          <img src="http://api.fftb.co.uk/image/ourprocess/{{process.id}}" class="img-fluid" />
+        </figure>
+      </div>
+
+      <ng-template #elseContent>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-12 pl-lg-0">
+          <figure>
+            <img src="http://api.fftb.co.uk/image/ourprocess/{{process.id}}" class="img-fluid" />
+          </figure>
+        </div>
+      </ng-template>
+      
+      <ng-template #elseImage>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-12 pr-lg-5 align-self-center">
+          <h3>{{process.process_name}}</h3>
+          <div [innerHtml]="process.process_short_des"></div>
+          <a [routerLink]="['/',user_slug,'process-details',process.slug]">VIEW MORE</a>
+        </div>
+      </ng-template>
+
+    </div>
+
+  </div>
+</section>
+
+<!--cretain-beer-->
+<section class="cretain-beer pb-5">
+  <h4 class="text-center pb-lg-4">What we learned so far</h4>
+  <h2 class="text-center pb-lg-5">THERE ARE CERTAIN BEERS <br />YOU HAVE TO DRINK</h2>
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-lg-3 col-md-4 col-sm-4 col-12"
+        *ngFor="let  whatWeLearnedSoFar of whatWeLearnedSoFarData let w=index;">
+        <figure><img src="http://api.fftb.co.uk/image/whatwelearned/{{whatWeLearnedSoFar.id}}" class="img-fluid" />
+        </figure>
+        <h4 class="pb-lg-2">
+          <a [routerLink]="['/',user_slug,'what-we-learned-so-far',whatWeLearnedSoFar.slug]">
+            {{ whatWeLearnedSoFar.heading}}
+          </a>
+        </h4>
+        <div [innerHtml]="whatWeLearnedSoFar.short_desc"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-brewery-footer></app-brewery-footer>

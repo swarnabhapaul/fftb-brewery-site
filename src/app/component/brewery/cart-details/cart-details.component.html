@@ -1,0 +1,85 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="contact-banner">
+    <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+    <div class="banner-text">
+        <div class="container">
+            <h5 class="pt-lg-5">{{bannerData.banner_type |titlecase}}</h5>
+            <div [innerHtml]="bannerData.banner_content"></div>
+        </div>
+    </div>
+</section>
+
+<section class="card-details-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-6 col-sm-4 col-12">
+                <div class="right-card">
+
+                    <div class="right-card" *ngIf="cartDetails.length !== 0">
+                        <h4 class="pb-lg-4 Cart-list">Cart List</h4>
+                        <div class="row right-addproduct align-items-center"
+                            *ngFor="let details of cartDetails let i=index">
+                            <!-- *ngFor="let details of cartDetails let" -->
+                            <div class="col-md-4 car-image-block">
+                                <a href="#">
+                                    <img src="http://api.fftb.co.uk/image/product/{{details.product_id}}"
+                                        class="img-fluid"></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <a href="#">
+                                            <h4>{{details.product_name}}</h4>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h5>{{details.product_count}} X {{details.unit_price}}</h5>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <app-cart-listchild [amount]="details.amount" [cartId]="details.cart_id"
+                                            [productID]="details.product_id" [stock]="details.product_count"
+                                            (stockValueChange)="getdata($event)"></app-cart-listchild>
+                                        <!--
+                         <input type="number" name="quantity" min="1" max="5"[(ngModel)]="quantity">-->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <a (click)="deleteCartById(details.product_id,details.cart_id)" class="close-icon"><i
+                                    class="fa fa-window-close" aria-hidden="true"></i></a>
+                        </div>
+
+                        <div class="card-view-btn">
+                            <ul class="sub-total">
+                                <li>
+                                    <h5>Subtotal:</h5>
+                                </li>
+                                <li class="text-right">
+                                    <h4>${{sumTotal}}</h4>
+                                </li>
+                            </ul>
+
+                            <ul class="view-addbtn">
+                                <li class="text-right">
+
+                                    <a (click)="checkout()">Checkout</a>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right-card" *ngIf="cartDetails.length == 0">
+                        <div class="alert alert-danger">
+                            <strong>Oops!</strong> cart is empty ,<a [routerLink]="['/',user_slug,'shop']">Let's shop</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-brewery-footer></app-brewery-footer>

@@ -1,0 +1,120 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="banner_sec" *ngIf="bannerData.length !== 0">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li *ngFor="let banner of bannerData let k=index;" data-target="#carouselExampleIndicators"
+        [attr.data-slide-to]="k" [className]="k == 0 ? 'active' : ''"></li>
+    </ol>
+
+    <div class="carousel-inner">
+
+      <div *ngFor="let banner of bannerData let j=index;"
+        [className]="j == 0 ? 'carousel-item active' : 'carousel-item'">
+        <img class="d-block w-100" src="http://api.fftb.co.uk/image/banner/{{banner.id}}" alt="First slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h5 class="pt-lg-5">{{banner.banner_type |titlecase}}</h5>
+            <div [innerHtml]="banner.banner_content"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--our-passion -->
+<section class="our-passion">
+  <div class="container">
+    <h2 class="text-center">OUR PASSION, YOUR PASSION</h2>
+    <div class="row">
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center" *ngFor="let passion of passionData let k=index;">
+        <figure><img src="http://api.fftb.co.uk/image/ourpassion/{{passion.id}}" class="img-fluid" /></figure>
+        <h4>{{passion.title}}</h4>
+        <p [innerHtml]="passion.description"></p>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<section class="our-secret">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <figure>
+          <img src="http://api.fftb.co.uk/image/homecms2/{{homethirdsectionData.id}}" class="img-fluid" />
+        </figure>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center bg-color bg-box">
+        <figure>
+          <img src="http://api.fftb.co.uk/image/homecms/{{homethirdsectionData.id}}" class="img-fluid" />
+        </figure>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="pl-lg-5">
+
+          <h4>{{homethirdsectionData.title}}</h4>
+          <h2 class="pt-4 pb-4">{{homethirdsectionData.short_title}}</h2>
+          <div [innerHtml]="homethirdsectionData.description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="best-weiss">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <div class="our-beer">
+          <h4>{{homethirdsection2Data.title}}</h4>
+          <h2 class="pt-4 pb-4">{{homethirdsection2Data.short_title}}</h2>
+          <div [innerHtml]="homethirdsection2Data.description"></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center white-bg">
+        <figure><img src="http://api.fftb.co.uk/image/homecms2/{{homethirdsection2Data.id}}" class="img-fluid" />
+        </figure>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+        <figure><img src="http://api.fftb.co.uk/image/homecms/{{homethirdsection2Data.id}}" class="img-fluid" />
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--sport-section-->
+<section class="sport-section">
+  <div class="container">
+    <h2 class="text-center">SPOT THE DIFFERENCE</h2>
+    <h4 class="text-center pt-4 pb-5">Long tradition is our key </h4>
+    <div class="row align-items-center" *ngIf="pagewiseProductData">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+        <figure><img src="http://api.fftb.co.uk/image/product/{{pagewiseProductData[0].id}}" class="img-fluid" />
+        </figure>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-12 text-center">
+        <div class="addto-box">
+          <h2>${{pagewiseProductData[0].price}}</h2>
+          <h3>{{pagewiseProductData[0].name}} </h3>
+          <p [innerHtml]="pagewiseProductData[0].description"></p>
+          <a (click)="addtoCart(pagewiseProductData[0])">
+            {{pagewiseProductData[0].buttonText}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--testmonial-slider-->
+<app-brewery-testimonial></app-brewery-testimonial>
+
+<app-brewery-footer></app-brewery-footer>

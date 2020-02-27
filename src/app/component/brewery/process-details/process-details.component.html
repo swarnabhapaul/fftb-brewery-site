@@ -1,0 +1,38 @@
+<app-brewery-header></app-brewery-header>
+
+<!-- <section class="contact-banner" *ngIf="bannerData.length !== 0">
+  <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+  <div class="banner-text">
+    <div class="container">
+      <h5 class="pt-lg-5">{{bannerData.banner_type |titlecase}}</h5>
+      <div [innerHtml]="bannerData.banner_content"></div>
+    </div>
+  </div>
+</section> -->
+
+<section class="shorting-section">
+    <div class="container">
+
+
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 align-self-center">
+                <figure style="text-align: center;">
+                    <img src="http://api.fftb.co.uk/image/ourprocess/{{processData.id}}" class="img-fluid">
+                </figure>
+            </div>
+
+            <div class="col-lg-8 col-md-6 col-sm-6 col-12 align-self-center">
+                <div class="site-container">
+                    <h3>{{processData.process_name}}</h3>
+                    <div [innerHtml]="processData.process_short_des"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<app-brewery-footer></app-brewery-footer>

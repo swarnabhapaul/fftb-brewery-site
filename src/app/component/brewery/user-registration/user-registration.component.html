@@ -1,0 +1,79 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="contact-banner" *ngIf="bannerData.length !== 0">
+  <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+  <div class="banner-text">
+    <div class="container">
+      <h5 class="pt-lg-5">{{bannerData.banner_type |titlecase}}</h5>
+      <div [innerHtml]="bannerData.banner_content"></div>
+    </div>
+  </div>
+</section>
+
+<!--  <div class="spinner-border m-5 text-primary" role="status" *ngIf="loader">
+                   <span class="sr-only">Loading...</span>
+                </div> -->
+
+
+<section class="with-passion">
+  <div class="container">
+
+
+    <form #f="ngForm" (ngSubmit)="f.form.valid && submitValue(f.value)">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address*</label>
+        <input type="email" id="email" required ngModel name="email" placeholder="Enter email">
+        <!-- <div [hidden]="email.valid" class="alert alert-danger"> Email is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter password*</label>
+        <input type="password" required name="password" ngModel placeholder="Enter password">
+        <!-- <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter firstName*</label>
+        <input type="text" required name="firstName" ngModel placeholder="Enter firstName">
+        <!-- <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger"> Frist Name is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter lastName*</label>
+        <input type="text" required name="lastName" ngModel placeholder="Enter lastName">
+        <!-- <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger"> Last Name is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter phone*</label>
+        <input type="text" required name="phone" ngModel placeholder="Enter phone">
+        <!-- <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger"> Phone is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter premisis*</label>
+        <input type="text" required name="premisis" ngModel placeholder="Enter premisis">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter city*</label>
+        <input type="text" required name="city" ngModel placeholder="Enter city">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter postCode*</label>
+        <input type="text" required name="postCode" ngModel placeholder="Enter postCode">
+      </div>
+
+      <button type="submit" [disabled]="!f.form.valid">Submit</button>
+    </form>
+  </div>
+</section>
+
+
+
+
+<!--our-process-->
+
+
+
+<app-brewery-testimonial></app-brewery-testimonial>
+
+
+<!--sport-section-->
+
+
+<app-brewery-footer></app-brewery-footer>

@@ -1,0 +1,8 @@
+#formContent { width: 600px; margin: 0 auto;}
+#formContent label{ min-width: 150px;}
+#formContent .alert-danger {
+    max-width: 350px;
+    padding: 5px 15px;
+}
+.form-register{ padding: 50px 0;;}
+.form-register h2{ font-size: 24px; text-align: center; margin-bottom: 50px;}

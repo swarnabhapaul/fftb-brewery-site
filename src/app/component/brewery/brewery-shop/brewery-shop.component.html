@@ -1,0 +1,178 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="contact-banner" *ngIf="bannerData.length !== 0">
+  <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+  <div class="banner-text">
+    <div class="container">
+      <h5 class="pt-lg-5">{{bannerData.banner_type | titlecase}}</h5>
+      <div [innerHtml]="bannerData.banner_content"></div>
+    </div>
+  </div>
+</section>
+
+<section class="shorting-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-12 align-self-top">
+        <div class="row showing-text align-items-center">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <h5>Showing {{productcount}}-{{total}} of results</h5>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group">
+              <select class="form-control" id="exampleFormControlSelect1" (change)="lowTohigh($event.target.value)">
+                <option value="DESC">High to low</option>
+                <option value="ASC">Low to high</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-center pt-lg-5" *ngIf="productres.length == 0">
+          <span style="color: crimson;text-align: center;">{{message}}</span>
+        </div>
+        <div class="row align-items-center pt-lg-5" *ngFor="let product of productres let i=index">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+            <figure>
+              <a [routerLink]="['/',user_slug,'product-details',product.slug]">
+                <img src="http://api.fftb.co.uk/image/product/{{product.id}}" class="img-fluid" />
+              </a>
+            </figure>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8 col-12 text-center">
+            <div class="addto-box">
+              <h2>${{product.price}} </h2>
+              <h3><a [routerLink]="['/',user_slug,'product-details',product.slug]">{{product.name}}</a></h3>
+              <p>{{product.description  | slice:0:40}}...</p>
+              <!-- <div [ngClass]="(!status)?'show':'hide'"><a (click)="addToCart(product)" >ADD TO CART</a></div>
+              <div [ngClass]="(status)?'show':'hide'"><a >ADDED</a></div> -->
+              <a (click)="addToCart(product)">{{product.buttonText}}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagination-part">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination  justify-content-center">
+
+              <li class="page-item">
+                <a class="page-link" (click)="preNextButton('DESC','0','0','3','pre')">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="preNextButton('DESC','0','0','3','next')">
+                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+
+        <div class="right-card" *ngIf="cartDetails!== undefined && cartDetails.length !== 0;else EmptyCart">
+          <h4 class="pb-lg-4">Cart</h4>
+          <div class="row-item">
+            <div class="row right-addproduct align-items-center" *ngFor="let details of cartDetails let i=index">
+              <!-- *ngFor="let details of cartDetails let" -->
+              <div class="col-md-4 car-image-block">
+                <a [routerLink]="['/',user_slug,'product-details',details.slug]">
+                  <img src="http://api.fftb.co.uk/image/product/{{details.product_id}}" class="img-fluid"></a>
+              </div>
+              <div class="col-md-8">
+                <a [routerLink]="['/',user_slug,'product-details']">
+                  <h4>{{details.product_name}}</h4>
+                </a>
+                <h5>{{details.product_count}}X ${{details.unit_price}}</h5>
+              </div>
+              <a (click)="deleteCartById(details.product_id,details.cart_id)" class="close-icon">
+                <i class="fa fa-window-close" aria-hidden="true"></i>
+              </a>
+              <!--  <ng-template *ngIf="details.cart_id; else nocartId">
+            </ng-template>
+            <ng-template #nocartId>
+            <a (click)="deleteCartById(details.product_id)" class="close-icon"><i class="fa fa-window-close"
+                aria-hidden="true"></i></a>
+            </ng-template>-->
+            </div>
+          </div>
+
+          <div class="card-view-btn">
+            <ul class="sub-total">
+              <li>
+                <h5>Subtotal:</h5>
+              </li>
+              <li class="text-right">
+                <h4>${{sumTotal}}</h4>
+              </li>
+            </ul>
+
+            <ul class="view-addbtn">
+              <li>
+                <a [routerLink]="['/',user_slug,'cart-details']">View Cart</a>
+              </li>
+              <li class="text-right">
+                <a (click)="checkout()">Checkout </a>
+                <!-- <a [routerLink]="['/',user_slug,'checkout']">Checkout </a>-->
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <ng-template #EmptyCart>
+          <h4 class="pb-lg-4">Cart</h4>
+          <h5 class="emty-title">Cart Empty</h5>
+          <div class="card-view-btn">
+            <ul class="sub-total">
+              <li>
+                <h5>Subtotal:</h5>
+              </li>
+              <li class="text-right">
+                <h4>${{total_cart_amt}}</h4>
+              </li>
+            </ul>
+
+            <ul class="view-addbtn">
+              <li>
+                <a [routerLink]="['/',user_slug,'cart-details']">View Cart</a>
+              </li>
+              <li class="text-right">
+                <a (click)="checkout()">Checkout </a>
+              </li>
+            </ul>
+
+          </div>
+        </ng-template>
+        <div class="price-range">
+          <h4 class="mt-lg-3 mb-lg-3">Filter By Price</h4>
+          <div class="custom-slider">
+            <ng5-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
+              (mouseup)="sliderEvent(value,highValue)"></ng5-slider>
+          </div>
+        </div>
+
+        <div class="featured-product mt-lg-5">
+          <h4 class="pb-lg-4">featured products</h4>
+          <div class="row right-addproduct align-items-center" *ngFor="let featured of featuredres let j=index">
+            <div class="col-md-4 car-image-block">
+              <a [routerLink]="['/',user_slug,'product-details',featured.slug]">
+                <img src="http://api.fftb.co.uk/image/product/{{featured.id}}" class="img-fluid"></a>
+            </div>
+            <div class="col-md-8">
+              <a [routerLink]="['/',user_slug,'product-details',featured.slug]">
+                <h4>{{featured.name}}</h4>
+              </a>
+              <h5>${{featured.price}}</h5>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-brewery-footer></app-brewery-footer>

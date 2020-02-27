@@ -1,0 +1,12 @@
+.total-amount { border-top: 1px solid #ccc; font-weight: 600;
+    font-size: 16px;}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+a.check-out.show, a.check-out.hide { width:auto; float: left;}

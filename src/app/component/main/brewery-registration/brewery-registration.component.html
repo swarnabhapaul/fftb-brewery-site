@@ -1,0 +1,95 @@
+<section class="form-register">
+    <div class="container">
+        <h2>Brewery Registration Page</h2>
+        <div class="wrapper fadeInDown text-center">
+            <div id="formContent">
+                <!-- Login Form -->
+               
+  
+                <span style="color:red;font-size:16px; 
+                                font-style: italic; 
+                                margin-top:20px; 
+                                padding-left:10px; 
+                                display:inline-block;"> * Marked are mandetory fields </span>
+                <form #f="ngForm" (ngSubmit)="f.form.valid && submitValue(f.value)">
+                 <div class="form-group">
+                        <label for="exampleInputEmail1">Brewery Name<span style="color:red">*</span></label>
+                        <input type="test" id="breweryname" required ngModel name="breweryname"
+                         placeholder="Enter brewery name">
+                        <!-- <div [hidden]="email.valid" class="alert alert-danger"> Email is required</div> -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Contact Person Name<span style="color:red">*</span></label>
+                        <input type="test" id="contactperson" required ngModel name="contactperson"
+                         placeholder="Enter pontact person">
+                        <!-- <div [hidden]="email.valid" class="alert alert-danger"> Email is required</div> -->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address<span style="color:red">*</span></label>
+                        <input type="email" id="email" required ngModel name="email"
+                         placeholder="Enter email">
+                        <!-- <div [hidden]="email.valid" class="alert alert-danger"> Email is required</div> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter password</label>
+                        <input type="password" name="password" ngModel placeholder="Enter password">
+                        <!-- <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required</div> -->
+                    </div>
+                  <!--  <div class="form-group">
+                        <label for="exampleInputEmail1">Enter firstName*</label>
+                        <input type="text" required name="firstName" ngModel placeholder="Enter firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter lastName*</label>
+                        <input type="text" required name="lastName" ngModel placeholder="Enter lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter phone*</label>
+                        <input type="text" required name="phone" ngModel placeholder="Enter phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter premisis*</label>
+                        <input type="text" required name="premisis" ngModel placeholder="Enter premisis">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter city*</label>
+                        <input type="text" required name="city" ngModel placeholder="Enter city">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter postCode*</label>
+                        <input type="text" required name="postCode" ngModel placeholder="Enter postCode">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Company*</label>
+                        <input type="text" required name="company" ngModel placeholder="Enter company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Vat Number*</label>
+                        <input type="text" required name="vat" ngModel placeholder="Enter Vat Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Enter Description</label>
+                        <textarea name="description" ngModel></textarea>
+                    </div>-->
+
+                    <button type="submit" [disabled]="!f.form.valid">Submit</button>
+                </form>
+     
+                 <div class="spinner-border m-5 text-primary" role="status" *ngIf="loader">
+                   <span class="sr-only">Loading...</span>
+                </div>
+              
+              
+            </div>
+        </div>
+        <div class="text-center">
+            <a [routerLink]="['/about-us']" class="btn">About page</a>
+            <a [routerLink]="['/contact-us']" class="btn">Contact page</a>
+            <a [routerLink]="['/brewery-registration']" class="btn">Brewery Registration</a>
+            <a [routerLink]="['/developer']" class="btn">Go To Brewery Homepage</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,162 @@
+<app-brewery-header></app-brewery-header>
+
+<section class="contact-banner" *ngIf="bannerData.length !== 0">
+    <img src="http://api.fftb.co.uk/image/banner/{{bannerData.id}}">
+    <div class="banner-text">
+        <div class="container">
+            <h5 class="pt-lg-5">{{bannerData.banner_type |titlecase}}</h5>
+            <div [innerHtml]="bannerData.banner_content"></div>
+        </div>
+    </div>
+</section>
+
+<section class="card-details">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <span class="anchor" id="formPayment"></span>
+                <!-- form card cc payment -->
+                <div class="card card-outline-secondary">
+                    <div class="card-body">
+                        <h3 class="text-center">Credit Card Payment</h3>
+                        <hr>
+                        <!-- /* margin: 0 auto; /* margin: 0 auto;<div class="alert alert-info p-2 pb-3">
+                            <a class="close font-weight-normal initialism" data-dismiss="alert"
+                                href="#"><samp>×</samp></a>
+                            CVC code is required.
+                        </div>-->
+                        <!-- templatedriven -->
+
+                        <form class="form" id="checkout" role="form" autocomplete="off" #procedTopay="ngForm"
+                            (ngSubmit)="insertformData(procedTopay.value)">
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="cc_name">First name</label>
+                                    <input type="text" class="form-control" name="firstName" pattern="\w+"
+                                        title="First name" required="required" [(ngModel)]="initialdata.firstName">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="cc_name">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" pattern="\w+"
+                                        title="Last name" required="required" [(ngModel)]="initialdata.lastName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="cc_name">Email</label>
+                                    <input type="text" class="form-control" name="email" pattern="\w+" title="Email"
+                                        required="required" [(ngModel)]="initialdata.email">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="cc_name">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" pattern="\w+"
+                                        title="Phone Number" required="required" [(ngModel)]="initialdata.phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ammount</label>
+                                <input type="text" required name="amount" class="form-control" id="exampleInputAmount"
+                                    placeholder="39" readonly [(ngModel)]="initialdata.price">
+                            </div>
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <input type="text" class="form-control" autocomplete="off" maxlength="20"
+                                    pattern="\d{16}" title="Credit card number" name="cardNo" required ngModel>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-12">Card Exp. Date</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="cc_exp_mo" size="0" required ngModel>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="cc_exp_yr" size="0" required ngModel>
+                                        <option *ngFor="let year of cardyearlist" [value]="year">{{year}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" required autocomplete="off" maxlength="3"
+                                        pattern="\d{3}" title="Three digits at back of your card" name="cvv"
+                                        placeholder="CVV" ngModel>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-inline"> -->
+                            <!-- <div class="form-group row">
+                                <div class="col-sm-12" id="dropin-container">
+                                </div>
+                            </div> -->
+                            <!-- <label for="cc_name">Shipping Address</label> -->
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="cc_name">Address</label>
+                                    <input type="text" class="form-control" name="premisis" title="Address"
+                                        required="required" [(ngModel)]="initialdata.premisis">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cc_name">City</label>
+                                    <input type="text" class="form-control" name="city" title="City" required="required"
+                                        [(ngModel)]="initialdata.city">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cc_name">Pin</label>
+                                    <input type="text" class="form-control" name="postCode" title="postCode"
+                                        required="required" [(ngModel)]="initialdata.postCode">
+                                </div>
+                            </div>
+                            <!-- <label for="cc_name">Billing Address</label>
+                            <div class="form-group row">
+                                
+                                <div class="col-sm-4">
+                                    <label for="cc_name">Address</label>
+                                    <input type="text" class="form-control" name="premisis" title="Address"
+                                        required="required" [(ngModel)]="initialdata.premisis">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cc_name">City</label>
+                                    <input type="text" class="form-control" name="city" title="City" required="required"
+                                        [(ngModel)]="initialdata.city">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cc_name">Pin</label>
+                                    <input type="text" class="form-control" name="postCode" title="postCode"
+                                        required="required" [(ngModel)]="initialdata.postCode">
+                                </div>
+                            </div> -->
+
+                            <hr>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block"> Pay </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- ================================== -->
+
+                        <!-- ================================== -->
+
+                    </div>
+                </div>
+                <script src="https://js.braintreegateway.com/js/braintree-2.31.0.min.js"></script>
+                <!-- /form card cc payment -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<app-brewery-footer></app-brewery-footer>

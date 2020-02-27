@@ -1,0 +1,53 @@
+<!--newes-lettrer-->
+<section class="news-letter newsletter">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+				<h2>every beer we make</h2>
+				<h4>Subscribe to our monthly newsletter</h4>
+				<form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()" method="post">
+					<div class="content">
+						<div class="input-group">
+							<input type="email" class="form-control" placeholder="Enter email*"
+								formControlName="subscribe_email" required>
+							<span class="input-group-btn">
+								<button class="btn" type="submit" [disabled]="!newsletterForm.valid">Subscribe</button>
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container"><ng-flash-message></ng-flash-message></div>
+</section>
+
+<!--footer-section-->
+<section class="footer-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center"  [innerHtml]="contactPage.footer_about"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+				<figure class="pb-4">
+					<img src="assets/brewery/images/footer-logo.png" class="img-fluid" />
+				</figure>
+				<p>{{contactPage.phone}}</p>
+				<p>{{contactPage.email}}</p>
+				<p>{{contactPage.address}}</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-12 text-center">
+				<ul class="footer-link">
+					<li><a [routerLink]="['/',user_slug]">Home</a></li>
+					<li><a [routerLink]="['/',user_slug,'about-us']">About us</a></li>
+					<li><a [routerLink]="['/',user_slug,'our-story']">Services</a></li>
+					<li><a [routerLink]="['/',user_slug,'blog']">Blog</a></li>
+					<li><a [routerLink]="['/',user_slug,'shop']">Shop</a></li>
+					<li><a [routerLink]="['/',user_slug,'contact-us']">Contact</a></li>
+					<li><a [routerLink]="['/',user_slug,'register']">Register</a></li>
+					<li><a (click)="login()">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<p class="copy-right">Copyright by Beer @2019. All rights reserved.</p>
+</section>

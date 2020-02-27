@@ -1,0 +1,31 @@
+<!--testmonial-slider-->
+<section class="testmonial-slider">
+    <div class="container">
+        <h4 class="text-center">Testimonials </h4>
+        <h2 class="text-center">A WORD FROM OUR CUSTOMERS </h2>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+
+                <div  *ngFor="let testimonial of testimonialres let j=index"  class="item carousel-item {{j == 0 && 'active' || ' '}}" >
+                    <i class="fa fa-quote-right text-center" aria-hidden="true"></i>
+                    <h4>{{testimonial.organisation_name}}</h4>
+                    <div class="testimonial" [innerHtml]="testimonial.comment"></div>
+                    <figure class="mt-lg-3">
+                        <img src="assets/brewery/images/signature.png" class="img-fluid" /></figure>
+                    <p class="overview"><b>{{testimonial.author}}</b></p>
+                    <h5>{{testimonial.role}}</h5>
+                </div>
+
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+</section>

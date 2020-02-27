@@ -1,0 +1,8 @@
+.card-details-page{ padding: 50px 0;}
+.card-details-page .car-image-block img {
+    width: 80px;
+    height: 80px;
+    /* margin: 0 auto; */
+    display: table;
+}
+.card-details-page h4.Cart-list { border-bottom:1px solid #ccc; margin-bottom:15px;}

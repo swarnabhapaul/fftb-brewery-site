@@ -1,0 +1,62 @@
+<app-brewery-header></app-brewery-header>
+<section class="inner-banner story-banner">
+    <div class="container">
+        <h5 class="pt-lg-5">Craft beer delivery </h5>
+        <h2 class="pt-lg-3 pb-lg-3">CHECKOUT </h2>
+        <p> Brewing le ourlife, beer ie our water so don't waste time drinking all kind of other<br />
+            thing. which won't make your life better. </p>
+    </div>
+</section>
+
+<!--oder-section-->
+<section class="your-order">
+    <div class="container">
+        <h2 class="text-center">Your order</h2>
+        <div class="row justify-content-md-center">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="product-head">
+                    <ul>
+                        <li>Product</li>
+                        <li>Total</li>
+                    </ul>
+                </div>
+                <ng-container *ngFor="let details of cartDetails">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12" style="float: left; width: 100%;">
+                        <div class="row pt-3 pb-3">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                                {{details.product_name}}
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-5 details-price">
+                                $ {{details.unit_price}} X {{details.product_count}}
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-2 text-right">
+                                ${{details.amount}}
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="oder-product-details total-amount">
+                    <ul>
+                        <li>Total</li>
+                        <li>${{subtotal}}</li>
+                    </ul>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" (click)="checkTermsConditions()">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Read and agree to the website <a href="#">terms and conditaions*</a>
+                    </label>
+                </div>
+
+                <a class="check-out {{classdisabledhide}}" data-toggle="tooltip" data-placement="top"
+                    title="Please check the term and condition">Checkout</a>
+                <a (click)="proceedtopay()" class="check-out {{classdisabled}}">Checkout</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Bootstrap inspired Braintree Hosted Fields example -->
+<app-brewery-footer></app-brewery-footer>
